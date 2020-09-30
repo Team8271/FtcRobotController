@@ -20,7 +20,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 @TeleOp(name="Example: TestHardwareTeleOp", group="Examples")  // @Autonomous(...) is the other common choice
 @Disabled
-public class TestTeleOp_External_Hardware extends LinearOpMode {
+public class TestTeleOp_with_Hardware extends LinearOpMode {
 
     TestBotHardwareSetup robot = new TestBotHardwareSetup(); //set up remote to robot hardware configuration
 
