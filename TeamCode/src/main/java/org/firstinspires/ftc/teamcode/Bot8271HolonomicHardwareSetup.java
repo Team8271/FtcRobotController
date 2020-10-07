@@ -32,7 +32,7 @@ public class Bot8271HolonomicHardwareSetup {
     public DcMotor motorBackLeft = null;
 
     //Accessories motors
-    public DcMotor armMotor = null;
+    //public DcMotor armMotor = null;
 
     //servos
         //Add servos here
@@ -72,13 +72,13 @@ public class Bot8271HolonomicHardwareSetup {
         motorBackLeft = hwMap.dcMotor.get("motorBL");
         motorBackRight = hwMap.dcMotor.get("motorBR");
 
-        armMotor = hwMap.dcMotor.get ("armMotor");
+        //0armMotor = hwMap.dcMotor.get ("armMotor");
 
         // Set the drive motor directions:
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
-        //motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
+        motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
-        //motorBackRight.setDirection(DcMotor.Direction.REVERSE);
+        motorBackRight.setDirection(DcMotor.Direction.REVERSE);
 
         //Keep the motors from moving during initialize.
         motorFrontLeft.setPower(MOTOR_STOP);

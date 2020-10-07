@@ -29,8 +29,8 @@ import org.firstinspires.ftc.teamcode.ExampleCode.ExampleHardwareSetupHolonomic;
         X           X
           X       X
 */
-@TeleOp(name = "Example: HolonomicTeleOp Linear", group = "Examples")
-@Disabled
+@TeleOp(name = "Bot8271HolonomicLinearOpMode", group = "LinearHolonomic")
+//@Disabled
 public class Bot8271HolonomicLinearOpMode extends LinearOpMode
 {
 
@@ -38,7 +38,7 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
     private ElapsedTime runtime = new ElapsedTime();
 
     //  DON'T FORGET TO RENAME HARDWARE CONFIG FILE NAME HERE!!!!!!
-    ExampleHardwareSetupHolonomic robot = new ExampleHardwareSetupHolonomic();
+    Bot8271HolonomicHardwareSetup robot = new Bot8271HolonomicHardwareSetup();
 
     @Override
     public void runOpMode() throws InterruptedException
