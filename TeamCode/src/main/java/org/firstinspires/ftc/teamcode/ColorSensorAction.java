@@ -54,10 +54,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 @TeleOp(name = "ColorSensorAction", group = "ColorSensor")
 //@Disabled
 public class ColorSensorAction extends LinearOpMode {
-
+    
     // Initialize Hardware Device Objects
-    ColorSensor colorSensor;
-    Servo servoHandL;
+    Bot8271HolonomicHardwareSetup robot = new Bot8271HolonomicHardwareSetup();
 
     //Create and set default servo positions variables.
     //Possible servo values: 0.0 - 1.0  For CRServo 0.5=stop greater or less than will spin in that direction
@@ -71,11 +70,8 @@ public class ColorSensorAction extends LinearOpMode {
 
     @Override
   public void runOpMode() throws InterruptedException {
-
-    // Map devices to robot hardware
-        colorSensor = hardwareMap.colorSensor.get("sensor_color");
-        //servoHandL = hardwareMap.servo.get("servoHandL");
-
+        // Map devices
+        robot.init(hardwareMap);
 
     // wait for the start button to be pressed.
     waitForStart();
@@ -85,21 +81,21 @@ public class ColorSensorAction extends LinearOpMode {
     while (opModeIsActive()) {
 
       // check for blue present greater than Target value
-        if (colorSensor.blue()>blueTARGET){
+        if (robot.colorSensor.blue()>blueTARGET){
             //do this
-            servoHandL.setPosition(OPEN);
+            //robot.servoHandL.setPosition(OPEN);
       // check for red present greater than Target value
-        }else if (colorSensor.red()>redTARGET) {
+        }else if (robot.colorSensor.red()>redTARGET) {
             //do this
-            servoHandL.setPosition(CLOSED);
+            //robot.servoHandL.setPosition(CLOSED);
         }else { //no color sensor reads target value
             //do this
-            servoHandL.setPosition(NEUTRAL);
+            //robot.servoHandL.setPosition(NEUTRAL);
         }
 
       // send the info back to driver station using telemetry function.
-      telemetry.addData("Red  ", colorSensor.red());
-      telemetry.addData("Blue ", colorSensor.blue());
+      telemetry.addData("Red  ", robot.colorSensor.red());
+      telemetry.addData("Blue ", robot.colorSensor.blue());
 
       telemetry.update();
     }

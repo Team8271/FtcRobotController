@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.ExampleCode;
+package org.firstinspires.ftc.teamcode;
 
 /* Copyright (c) 2017 FIRST. All rights reserved.
  */
@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.view.View;
 
+import com.qualcomm.hardware.rev.RevColorSensorV3;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -31,9 +32,9 @@ import java.util.Locale;
  * https://www.revrobotics.com/content/sw/color-sensor-v3/sdk/docs/javadoc/com/revrobotics/ColorSensorV3.html
  * https://www.chiefdelphi.com/t/rev-color-sensor-v3-programming/367587
  */
-@TeleOp(name = "Sensor: REVColorDistanceV3", group = "Example")
-@Disabled // Comment this out @Disabled to add to the opmode list
-public class ExampleSensorREVColorDistanceV3 extends LinearOpMode {
+@TeleOp(name = "MYREVColorDistanceV3", group = "Example")
+//Disabled // Comment this out @Disabled to add to the opmode list
+public class MyExampleSensorREVColorDistanceV3 extends LinearOpMode {
 
     /**
      *      * In this example, we represent the detected color by a hue, saturation, and value color
@@ -71,7 +72,7 @@ public class ExampleSensorREVColorDistanceV3 extends LinearOpMode {
     //something like this:    TestBotHardwareSetup robot     = new TestBotHardwareSetup();  // Use MyBotHardware Setup
 
     // Initialize Hardware Device Objects
-    ColorSensor sensorColor;
+    RevColorSensorV3 sensorColor;
     DistanceSensor sensorDistance;
 
     @Override
@@ -81,7 +82,7 @@ public class ExampleSensorREVColorDistanceV3 extends LinearOpMode {
         // Something like this: robot.init(hardwareMap);      //Initialize hardware from the MyBotHardware Setup
 
         // get a reference to the color sensor.
-        sensorColor = hardwareMap.get(ColorSensor.class, "sensor_color_distance");
+        sensorColor = hardwareMap.get(RevColorSensorV3.class, "sensor_color_distance");
 
         // get a reference to the distance sensor that shares the same name.
         sensorDistance = hardwareMap.get(DistanceSensor.class, "sensor_color_distance");

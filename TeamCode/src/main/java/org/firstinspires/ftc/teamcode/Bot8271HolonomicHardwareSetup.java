@@ -1,9 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
 
+import com.qualcomm.hardware.rev.RevColorSensorV3;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 
 /**
  * Created by TeameurekaRobotics on 12/30/2016, updated 10/1/2019
@@ -35,10 +38,10 @@ public class Bot8271HolonomicHardwareSetup {
     //public DcMotor armMotor = null;
 
     //servos
-        //Add servos here
+    Servo servoHandL;
 
     //sensors
-        //Add sensors here
+    RevColorSensorV3 colorSensor;
 
     /* local OpMode members. */
     HardwareMap hwMap        = null;
@@ -90,14 +93,18 @@ public class Bot8271HolonomicHardwareSetup {
          * SERVO SECTION
          ************************************************************/
 
-            //Add servo configuration
+        //servoHandL = hwMap.servo.get("servoHandL");
 
         /************************************************************
          * SENSOR SECTION
          ************************************************************/
-            //Add sensors
 
-   }
+        colorSensor = hwMap.get(RevColorSensorV3.class, "sensor_color_distance");
+
+
+
+
+    }
 
 }
 
