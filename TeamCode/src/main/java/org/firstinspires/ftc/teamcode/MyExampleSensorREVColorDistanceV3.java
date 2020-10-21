@@ -134,6 +134,15 @@ public class MyExampleSensorREVColorDistanceV3 extends LinearOpMode {
                 }
             });
 
+            /*
+            if Distance is lower than 3 cm, then there is an object.
+
+            If there is object in front of bottom sensor,
+                then if there is object in front of top sensor as well,
+                THERE ARE 4 RINGS
+                
+             else
+            */
             telemetry.update();
         }
 
