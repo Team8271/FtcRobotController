@@ -83,10 +83,10 @@ public class MyExampleSensorREVColorDistanceV3 extends LinearOpMode {
         // Something like this: robot.init(hardwareMap);      //Initialize hardware from the MyBotHardware Setup
 
         // get a reference to the color sensor.
-        sensorColor = hardwareMap.get(RevColorSensorV3.class, "sensor_color_distance");
+        //sensorColor = hardwareMap.get(RevColorSensorV3.class, "sensor_color_distance");
 
         // get a reference to the distance sensor that shares the same name.
-        sensorDistance = hardwareMap.get(DistanceSensor.class, "sensor_color_distance");
+        //sensorDistance = hardwareMap.get(DistanceSensor.class, "sensor_color_distance");
 
         // get a reference to the distance sensor's distance
         double sensorCentimeter = sensorDistance.getDistance(DistanceUnit.CM);
@@ -165,7 +165,10 @@ public class MyExampleSensorREVColorDistanceV3 extends LinearOpMode {
                 */
             }
 
-            else {/*there are no rings*/}
+            else
+                {
+                    /*there are no rings*/
+                }
 
 
             telemetry.update();

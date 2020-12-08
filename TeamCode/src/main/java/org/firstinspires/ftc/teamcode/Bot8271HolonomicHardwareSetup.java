@@ -99,7 +99,7 @@ public class Bot8271HolonomicHardwareSetup {
          * SENSOR SECTION
          ************************************************************/
 
-        colorSensor = hwMap.get(RevColorSensorV3.class, "sensor_color_distance");
+        //colorSensor = hwMap.get(RevColorSensorV3.class, "sensor_color_distance");
 
 
 

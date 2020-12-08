@@ -58,15 +58,15 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
         {
             // left stick: X controls Strafe & Y controls Spin Direction
             // right stick: Y controls drive Forward/Backward
-            float gamepad1LeftY = -gamepad1.left_stick_y;   // drives spin left/right
+            float gamepad1LeftY = -gamepad1.left_stick_y;   // drives forwards and backwards
             float gamepad1LeftX = gamepad1.left_stick_x;    // strafe direction (side to side)
-            float gamepad1RightY = gamepad1.right_stick_y;  //drives forwards and backwards
+            float gamepad1RightX = gamepad1.right_stick_x;  // drives spin left/right
 
             // holonomic formulas
-            float FrontLeft = -gamepad1LeftY - gamepad1LeftX - gamepad1RightY;
-            float FrontRight = gamepad1LeftY - gamepad1LeftX - gamepad1RightY;
-            float BackRight = gamepad1LeftY + gamepad1LeftX - gamepad1RightY;
-            float BackLeft = -gamepad1LeftY + gamepad1LeftX - gamepad1RightY;
+            float FrontLeft = -gamepad1LeftY - gamepad1LeftX - gamepad1RightX;
+            float FrontRight = gamepad1LeftY - gamepad1LeftX - gamepad1RightX;
+            float BackRight = gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
+            float BackLeft = -gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
 
             // clip the right/left values so that the values never exceed +/- 1
             FrontRight = Range.clip(FrontRight, -1, 1);
@@ -84,7 +84,7 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
              * Display Telemetry for debugging
              */
             telemetry.addData("Text", "*** Robot Data***");
-            telemetry.addData("Joy XL YL XR", String.format("%.2f", gamepad1LeftX) + " " + String.format("%.2f", gamepad1LeftY) + " " + String.format("%.2f", gamepad1RightY));
+            telemetry.addData("Joy XL YL XR", String.format("%.2f", gamepad1LeftX) + " " + String.format("%.2f", gamepad1LeftY) + " " + String.format("%.2f", gamepad1RightX));
             telemetry.addData("f left pwr", "front left  pwr: " + String.format("%.2f", FrontLeft));
             telemetry.addData("f right pwr", "front right pwr: " + String.format("%.2f", FrontRight));
             telemetry.addData("b right pwr", "back right pwr: " + String.format("%.2f", BackRight));

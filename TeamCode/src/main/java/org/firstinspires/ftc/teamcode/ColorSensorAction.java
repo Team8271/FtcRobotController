@@ -52,7 +52,7 @@ import com.qualcomm.robotcore.hardware.Servo;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 @TeleOp(name = "ColorSensorAction", group = "ColorSensor")
-//@Disabled
+@Disabled
 public class ColorSensorAction extends LinearOpMode {
     
     // Initialize Hardware Device Objects
