@@ -56,10 +56,11 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
 
         while(opModeIsActive())
         {
-            // left stick: X controls Strafe & Y controls Spin Direction
-            // right stick: Y controls drive Forward/Backward
+            // left stick: X controls Strafe & forward/backward
             float gamepad1LeftY = -gamepad1.left_stick_y;   // drives forwards and backwards
             float gamepad1LeftX = gamepad1.left_stick_x;    // strafe direction (side to side)
+            // right stick: Y controls spin direction
+
             float gamepad1RightX = gamepad1.right_stick_x;  // drives spin left/right
 
             // holonomic formulas
@@ -79,6 +80,15 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
             robot.motorFrontLeft.setPower(FrontLeft);
             robot.motorBackLeft.setPower(BackLeft);
             robot.motorBackRight.setPower(BackRight);
+
+            // Disc Controls \\
+
+            robot.frontDiscLaunch.setPower(gamepad2.right_trigger);
+            robot.backDiscLaunch.setPower(gamepad2.right_trigger);
+
+            // Intake Controls \\
+
+            robot.intakeMotor.setPower(gamepad2.left_trigger);
 
             /*
              * Display Telemetry for debugging
