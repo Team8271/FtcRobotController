@@ -39,10 +39,9 @@ public class Bot8271HolonomicHardwareSetup {
     public DcMotor backDiscLaunch = null;
 
     public DcMotor intakeMotor = null;
-    //public DcMotor armMotor = null;
 
     //servos
-    Servo servoHandL;
+
 
     //sensors
     RevColorSensorV3 colorSensor;
@@ -83,7 +82,6 @@ public class Bot8271HolonomicHardwareSetup {
         backDiscLaunch = hwMap.dcMotor.get("backDL");
 
         intakeMotor = hwMap.dcMotor.get("IM");
-        //0armMotor = hwMap.dcMotor.get ("armMotor");
 
         // Set the drive motor directions:
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
