@@ -90,6 +90,21 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
 
             robot.intakeMotor.setPower(gamepad2.left_trigger);
 
+            if(gamepad2.left_bumper)
+            {
+                robot.intakeServo.setPosition(.7);
+            }
+
+            else if(gamepad2.right_bumper)
+            {
+                robot.intakeServo.setPosition(.1);
+            }
+
+            else
+                {
+                    robot.intakeServo.setPosition(.5);
+                }
+
             /*
              * Display Telemetry for debugging
              */

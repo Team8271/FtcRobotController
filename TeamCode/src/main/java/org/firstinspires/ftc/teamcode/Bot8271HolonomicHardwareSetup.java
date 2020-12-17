@@ -42,6 +42,7 @@ public class Bot8271HolonomicHardwareSetup {
 
     //servos
 
+    public Servo intakeServo = null;
 
     //sensors
     RevColorSensorV3 colorSensor;
@@ -78,8 +79,8 @@ public class Bot8271HolonomicHardwareSetup {
         motorBackLeft = hwMap.dcMotor.get("motorBL");
         motorBackRight = hwMap.dcMotor.get("motorBR");
 
-        frontDiscLaunch = hwMap.dcMotor.get("frontDL");
-        backDiscLaunch = hwMap.dcMotor.get("backDL");
+        frontDiscLaunch = hwMap.dcMotor.get("fDL");
+        backDiscLaunch = hwMap.dcMotor.get("bDL");
 
         intakeMotor = hwMap.dcMotor.get("IM");
 
@@ -99,7 +100,7 @@ public class Bot8271HolonomicHardwareSetup {
          * SERVO SECTION
          ************************************************************/
 
-        //servoHandL = hwMap.servo.get("servoHandL");
+        intakeServo = hwMap.servo.get("IS");
 
         /************************************************************
          * SENSOR SECTION
