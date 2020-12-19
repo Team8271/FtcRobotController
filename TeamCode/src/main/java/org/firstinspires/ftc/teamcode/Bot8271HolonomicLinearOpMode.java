@@ -57,17 +57,17 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
         while(opModeIsActive())
         {
             // left stick: X controls Strafe & forward/backward
-            float gamepad1LeftY = -gamepad1.left_stick_y;   // drives forwards and backwards
-            float gamepad1LeftX = gamepad1.left_stick_x;    // strafe direction (side to side)
-            // right stick: Y controls spin direction
+            float gamepad1LeftY = -gamepad1.right_stick_x;   // drives spin
+            float gamepad1LeftX = -gamepad1.left_stick_x;    // strafe direction (side to side)
 
-            float gamepad1RightX = gamepad1.right_stick_x;  // drives spin left/right
+            // right stick: Y controls spin direction
+            float gamepad1RightX = gamepad1.left_stick_y;  // drives forward/back
 
             // holonomic formulas
-            float FrontLeft = -gamepad1LeftY - gamepad1LeftX - gamepad1RightX;
-            float FrontRight = gamepad1LeftY - gamepad1LeftX - gamepad1RightX;
-            float BackRight = gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
-            float BackLeft = -gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
+            float FrontLeft = -gamepad1RightX - gamepad1LeftX - gamepad1LeftY;
+            float FrontRight = gamepad1RightX - gamepad1LeftX - gamepad1LeftY;
+            float BackRight = gamepad1RightX + gamepad1LeftX - gamepad1LeftY;
+            float BackLeft = -gamepad1RightX + gamepad1LeftX - gamepad1LeftY;
 
             // clip the right/left values so that the values never exceed +/- 1
             FrontRight = Range.clip(FrontRight, -1, 1);
@@ -88,22 +88,36 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
 
             // Intake Controls \\
 
-            robot.intakeMotor.setPower(gamepad2.left_trigger);
+
 
             if(gamepad2.left_bumper)
             {
-                robot.intakeServo.setPosition(.7);
+                robot.intakeServo.setPosition(.1);
+                robot.intakeMotor.setPower(1);
             }
 
             else if(gamepad2.right_bumper)
             {
-                robot.intakeServo.setPosition(.1);
+                robot.intakeMotor.setPower(-1);
+                robot.intakeServo.setPosition(.7);
             }
 
             else
                 {
+                    robot.intakeMotor.setPower(0);
                     robot.intakeServo.setPosition(.5);
                 }
+
+            // Arm controls \\
+
+            if(gamepad2.a)
+            {
+                robot.commaClaw.setPosition(.8);
+            }
+            if(gamepad2.b)
+            {
+                robot.commaClaw.setPosition(.2);
+            }
 
             /*
              * Display Telemetry for debugging
