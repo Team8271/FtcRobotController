@@ -84,7 +84,7 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
             // Disc Controls \\
 
             robot.frontDiscLaunch.setPower(gamepad2.right_trigger);
-            robot.backDiscLaunch.setPower(gamepad2.right_trigger);
+
 
             // Intake Controls \\
 
@@ -94,30 +94,36 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
             {
                 robot.intakeServo.setPosition(.1);
                 robot.intakeMotor.setPower(1);
+                robot.backDiscLaunch.setPower(1);
             }
 
             else if(gamepad2.right_bumper)
             {
                 robot.intakeMotor.setPower(-1);
                 robot.intakeServo.setPosition(.7);
+                robot.backDiscLaunch.setPower(-1);
             }
 
             else
                 {
                     robot.intakeMotor.setPower(0);
                     robot.intakeServo.setPosition(.5);
+                    robot.backDiscLaunch.setPower(0);
                 }
 
             // Arm controls \\
 
-            if(gamepad2.a)
+            if(gamepad1.a)
             {
                 robot.commaClaw.setPosition(.8);
             }
-            if(gamepad2.b)
+            if(gamepad1.b)
             {
                 robot.commaClaw.setPosition(.2);
             }
+
+            robot.armMotor.setPower(gamepad1.right_trigger);
+            robot.armMotor.setPower(-gamepad1.left_trigger);
 
             /*
              * Display Telemetry for debugging
