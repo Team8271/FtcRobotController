@@ -71,7 +71,7 @@ public class ObjectDetectionWebcam extends LinearOpMode {
      * and paste it in to your code on the next line, between the double quotes.
      */
     private static final String VUFORIA_KEY =
-            " -- YOUR NEW VUFORIA KEY GOES HERE  --- ";
+            "AX6CxDD/////AAABmVjo2GqFc0O5jG5+7W55SRFYkiAcsL11yqI/4PpvcyEDOtKytbQJhgh0DDoUAWOvaQRRLd/Kxbg02+U2Ig4kn4jaBKy1H26aaffnseu75xOG8/xVM+oAlFDLB4O4hyuXgNlPZXNaW6dhMN4Zhc9eO5dLJztF1wdacWhkqVDpGnuiaJDKCHPLh6bERTQpgZtBGds28Hv33BYH7t53dthvunOIWRAF1dGauPuluMVlf7Hh9Vp7woG3FFxSeaGSJ3oFJfCuS1cNm48crnPI+oe7gjB/cjp0oFIiha5fnm5UW/AdvgQfLy1tI6PoW2xABiYMp3r1jSaJOKnvbh321yVXtJCt0elSEzw/C50o+4n2fQb7";
 
     /**
      * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
