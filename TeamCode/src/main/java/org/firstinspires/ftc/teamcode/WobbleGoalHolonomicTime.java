@@ -51,10 +51,7 @@ public class WobbleGoalHolonomicTime extends LinearOpMode {
         /************************
          * Autonomous Code Below://
          *************************/
-        if()
-        {
 
-        }
 
         StopDriving();
 
