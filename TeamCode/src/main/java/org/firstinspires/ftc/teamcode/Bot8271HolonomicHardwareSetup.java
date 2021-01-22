@@ -48,6 +48,8 @@ public class Bot8271HolonomicHardwareSetup {
 
     public Servo commaClaw = null;
 
+    public Servo stopServo = null;
+
     //sensors
     RevColorSensorV3 colorSensor;
 
@@ -109,6 +111,8 @@ public class Bot8271HolonomicHardwareSetup {
         intakeServo = hwMap.servo.get("IS");
 
         commaClaw = hwMap.servo.get("CC");
+
+        stopServo = hwMap.servo.get("SS");
 
         /************************************************************
          * SENSOR SECTION

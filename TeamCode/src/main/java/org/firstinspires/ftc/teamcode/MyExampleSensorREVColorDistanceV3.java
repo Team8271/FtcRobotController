@@ -157,12 +157,12 @@ public class MyExampleSensorREVColorDistanceV3 extends LinearOpMode {
             This is when the robot decides where to go with the wobble goal
             ///////////////////////////////////////////////////////////////
             */
-            if (recognition.getLabel())
+            /*if (recognition.getLabel())
             {
-                /*
+
                     there are four rings
-                */
-            }
+
+            }*/
 
             else if(/*bottomSensor.*/objectIsThere && /*topSensor.*/!objectIsThere)
             {

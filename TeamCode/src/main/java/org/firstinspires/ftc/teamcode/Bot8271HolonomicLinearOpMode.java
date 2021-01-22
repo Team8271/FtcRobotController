@@ -88,7 +88,15 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
 
             // Intake Controls \\
 
+            if(gamepad2.a)
+            {
+                robot.stopServo.setPosition(1);
+            }
 
+            else if (gamepad2.b)
+            {
+                robot.stopServo.setPosition(.1);
+            }
 
             if(gamepad2.left_bumper)
             {
@@ -110,6 +118,8 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
                     robot.intakeServo.setPosition(.5);
                     robot.backDiscLaunch.setPower(0);
                 }
+
+
 
             // Arm controls \\
 
