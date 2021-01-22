@@ -18,6 +18,12 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 import java.util.Locale;
 
+import org.firstinspires.ftc.robotcore.external.ClassFactory;
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
+import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
+import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
+
 /*
  * This is an example LinearOpMode that shows how to use
  * the REV Robotics Color-Distance Sensor.
@@ -151,7 +157,7 @@ public class MyExampleSensorREVColorDistanceV3 extends LinearOpMode {
             This is when the robot decides where to go with the wobble goal
             ///////////////////////////////////////////////////////////////
             */
-            if (/*bottomSensor.*/objectIsThere && /*topSensor.*/objectIsThere)
+            if (recognition.getLabel())
             {
                 /*
                     there are four rings
