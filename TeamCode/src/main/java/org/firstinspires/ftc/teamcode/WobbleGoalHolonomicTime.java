@@ -22,7 +22,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.ExampleCode.ExampleHardwareSetupHolonomic;
 
 @Autonomous(name="WobbleGoalHolonomicTime", group="Concept")
-//@Disabled
+@Disabled
 public class WobbleGoalHolonomicTime extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();

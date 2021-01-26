@@ -90,7 +90,7 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
 
             if(gamepad2.a)
             {
-                robot.stopServo.setPosition(1);
+                robot.stopServo.setPosition(.2);
             }
 
             else if (gamepad2.b)
@@ -100,7 +100,7 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
 
             if(gamepad2.left_bumper)
             {
-                robot.intakeServo.setPosition(.1);
+                robot.intakeServo.setPosition(.7);
                 robot.intakeMotor.setPower(1);
                 robot.backDiscLaunch.setPower(1);
             }
@@ -108,7 +108,7 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
             else if(gamepad2.right_bumper)
             {
                 robot.intakeMotor.setPower(-1);
-                robot.intakeServo.setPosition(.7);
+                robot.intakeServo.setPosition(.1);
                 robot.backDiscLaunch.setPower(-1);
             }
 
