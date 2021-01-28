@@ -56,7 +56,16 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
 
         while(opModeIsActive())
         {
-            double maxSpeed = 0.5;
+            float maxSpeed = 0.5f;
+
+            if(gamepad1.dpad_up)
+            {
+                maxSpeed = 1f;
+            }
+            else if(gamepad1.dpad_down)
+            {
+                maxSpeed = 0.5f;
+            }
 
             // left stick: X controls Strafe & forward/backward
             float gamepad1LeftY = -gamepad1.right_stick_x;   // drives spin
@@ -72,10 +81,10 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
             float BackLeft = -gamepad1RightX + gamepad1LeftX - gamepad1LeftY;
 
             // clip the right/left values so that the values never exceed +/- 1
-            FrontRight = Range.clip(FrontRight, -1, maxSpeed);
-            FrontLeft = Range.clip(FrontLeft, -1, 1);
-            BackLeft = Range.clip(BackLeft, -1, 1);
-            BackRight = Range.clip(BackRight, -1, 1);
+            FrontRight = Range.clip(FrontRight, -maxSpeed, maxSpeed);
+            FrontLeft = Range.clip(FrontLeft, -maxSpeed, maxSpeed);
+            BackLeft = Range.clip(BackLeft, -maxSpeed, maxSpeed);
+            BackRight = Range.clip(BackRight, -maxSpeed, maxSpeed);
 
             // write the clipped values from the formula to the motors
             robot.motorFrontRight.setPower(FrontRight);
