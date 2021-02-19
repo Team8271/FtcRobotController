@@ -72,17 +72,17 @@ public class TestAutoDriveByTime extends LinearOpMode {
         /************************
          * Autonomous Code Below://
          *************************/
-        DriveForwardTime(DRIVE_POWER, 4000);
+        DriveForwardTime(DRIVE_POWER, 2000);
         TurnLeft(DRIVE_POWER, 1000);
         StopDrivingTime(2000);
 
-        DriveForwardTime(DRIVE_POWER, 4000);
+        DriveForwardTime(DRIVE_POWER, 2000);
         TurnRight(DRIVE_POWER, 1000);
         StopDrivingTime(2000);
 
-        RaiseArm();
-        DriveForwardTime(DRIVE_POWER, 4000);
-        StopDriving();
+        //RaiseArm();
+        //DriveForwardTime(DRIVE_POWER, 4000);
+        //StopDriving();
 
        
 
@@ -102,6 +102,7 @@ public class TestAutoDriveByTime extends LinearOpMode {
     {
         DriveForward(power);
         Thread.sleep(time);
+        StopDrivingTime(500);
     }
 
     public void StopDriving()
@@ -119,6 +120,7 @@ public class TestAutoDriveByTime extends LinearOpMode {
         motorLeft.setPower(-power);
         motorRight.setPower(power);
         Thread.sleep(time);
+        StopDrivingTime(500);
     }
 
     public void TurnRight(double power, long time) throws InterruptedException

@@ -22,14 +22,14 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.ExampleCode.ExampleHardwareSetupHolonomic;
 
 @Autonomous(name="WobbleGoalHolonomicTime", group="Concept")
-@Disabled
+//@Disabled
 public class WobbleGoalHolonomicTime extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
 
     /* Define Hardware setup */
     // assumes left motors are reversed
-    ExampleHardwareSetupHolonomic robot     =   new ExampleHardwareSetupHolonomic();
+    Bot8271HolonomicHardwareSetup robot = new Bot8271HolonomicHardwareSetup();
     /**
      * Constructor
      */
@@ -48,12 +48,10 @@ public class WobbleGoalHolonomicTime extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
-        /************************
-         * Autonomous Code Below://
-         *************************/
-
-
-        StopDriving();
+            /************************
+             * Autonomous Code Below://
+             *************************/
+            DriveForwardTime(DRIVE_POWER, 5000);
 
     }//runOpMode
 
@@ -61,7 +59,9 @@ public class WobbleGoalHolonomicTime extends LinearOpMode {
 
     public void None() throws InterruptedException
     {
-        DriveForwardTime(DRIVE_POWER, 5000);
+        DriveForwardTime(DRIVE_POWER, 2000);
+        StrafeRight(DRIVE_POWER, 500);
+        StrafeLeft(DRIVE_POWER, 1000);
         StopDriving();
     }
 
@@ -83,15 +83,16 @@ public class WobbleGoalHolonomicTime extends LinearOpMode {
     {
         // write the values to the motors
         robot.motorFrontRight.setPower(power);//still need to test motor directions for desired movement
-        robot.motorFrontLeft.setPower(power);
+        robot.motorFrontLeft.setPower(-power);
         robot.motorBackRight.setPower(power);
-        robot.motorBackLeft.setPower(power);
+        robot.motorBackLeft.setPower(-power);
     }
 
     public void DriveForwardTime(double power, long time) throws InterruptedException
     {
         DriveForward(power);
         Thread.sleep(time);
+        StopDrivingTime(500);
     }
 
     public void StopDriving()
@@ -112,6 +113,7 @@ public class WobbleGoalHolonomicTime extends LinearOpMode {
         robot.motorBackRight.setPower(-power);
         robot.motorBackLeft.setPower(power);
         Thread.sleep(time);
+        StopDrivingTime(500);
     }
 
     public void StrafeRight(double power, long time) throws InterruptedException
@@ -127,6 +129,7 @@ public class WobbleGoalHolonomicTime extends LinearOpMode {
         robot.motorBackRight.setPower(-power);
         robot.motorBackLeft.setPower(power);
         Thread.sleep(time);
+        StopDrivingTime(500);
     }
 
     public void SpinLeft (double power, long time) throws InterruptedException

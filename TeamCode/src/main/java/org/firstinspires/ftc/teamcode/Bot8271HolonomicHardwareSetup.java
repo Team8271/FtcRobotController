@@ -7,6 +7,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
 
 /**
  * Created by TeameurekaRobotics on 12/30/2016, updated 10/1/2019
@@ -98,6 +100,11 @@ public class Bot8271HolonomicHardwareSetup {
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
         motorBackRight.setDirection(DcMotor.Direction.REVERSE);
 
+        armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        idle();
+
+
+
         //Keep the motors from moving during initialize.
         motorFrontLeft.setPower(MOTOR_STOP);
         motorFrontRight.setPower(MOTOR_STOP);
@@ -113,6 +120,9 @@ public class Bot8271HolonomicHardwareSetup {
         commaClaw = hwMap.servo.get("CC");
 
         stopServo = hwMap.servo.get("SS");
+        stopServo.setPosition(.3);
+        //set claw closed
+        commaClaw.setPosition(.8);
 
         /************************************************************
          * SENSOR SECTION
@@ -123,6 +133,9 @@ public class Bot8271HolonomicHardwareSetup {
 
 
 
+    }
+
+    private void idle() {
     }
 
 }

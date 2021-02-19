@@ -48,9 +48,11 @@ public class DansObjectDetection extends LinearOpMode {
         tfodParameters.minResultConfidence = 0.8f;
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_FIRST_ELEMENT, LABEL_SECOND_ELEMENT);
+        tfod.setZoom(1.5, .78);
     }
 
-    public String analyseStack() {
+    public String analyseStack()
+    {
         if (tfod != null) {
             // getUpdatedRecognitions() will return null if no new information is available since
             // the last time that call was made.
@@ -61,10 +63,14 @@ public class DansObjectDetection extends LinearOpMode {
                 for (Recognition recognition : updatedRecognitions) {
                     //Verify the stack that was found meets minimum confidence value
                     if (recognition.getConfidence() > .8) {
-                        if (recognition.getLabel().equals("Single")) {
+                        if (recognition.getLabel().equals("Single"))
+                        {
                             //Single ring stack found so that means we need to go to target zone B
                             return "B";
-                        } else {
+                        }
+
+                        else if (recognition.getLabel().equals("Quad"))
+                        {
                             //4 ring stack found so that means we need to go to target zone C
                             return "C";
                         }
@@ -72,7 +78,6 @@ public class DansObjectDetection extends LinearOpMode {
                 }
             }
         }
-
         // If we got this far, it means that either we did not find a ring stack (i.e. no rings in the stack
         // or something went wrong. In either case we should go for target zone A
         return "A";
@@ -92,30 +97,48 @@ public class DansObjectDetection extends LinearOpMode {
 
         String ringStack = analyseStack();
 
-        if (ringStack.equals("C")) {
-            // Code for what to do for target zone C goes here
-            StrafeRight(DRIVE_POWER, 1000);
-            DriveForwardTime(DRIVE_POWER, 5000);
-        } else if (ringStack.equals("B")) {
-            // Code for what to do for target zone B goes here
-            StrafeLeft(DRIVE_POWER, 1000);
-            DriveForwardTime(DRIVE_POWER, 5000);
-        } else {
-            // Code for what to do for target zone A goes here
-            DriveForwardTime(DRIVE_POWER, 5000);
-        }
+        telemetry.addData("Stack", ringStack);
+        telemetry.update();
+
+
+            if (ringStack.equals("B")) {
+                // Code for what to do for target zone B goes here - Single
+                DriveForwardTime(DRIVE_POWER, 500);
+
+            } else if (ringStack.equals("C")) {
+                // Code for what to do for target zone C goes here - Quad
+                DriveForwardTime(DRIVE_POWER, 500);
+                OpenRingStop();
+
+            } else {
+                // Code for what to do for target zone A goes here - None
+                DriveForwardTime(DRIVE_POWER, 1000);
+                Thread.sleep(1000);
+                StrafeRight(DRIVE_POWER, 500);
+                Thread.sleep(500);
+                openClaw();
+                Thread.sleep(2000);
+                StrafeLeft(DRIVE_POWER, 500);
+                Thread.sleep(500);
+                RunLauncher(.5);
+                OpenRingStop();
+                Thread.sleep(500);
+                CloseRingStop();
+            }
     }
 
     /** Below: Basic Drive Methods used in Autonomous code...**/
     //set Drive Power variable
-    double DRIVE_POWER = 1.0;
+    double DRIVE_POWER = 0.5;
+
+    boolean clawIsOpen;
 
     public void DriveForward(double power)
     {
         // write the values to the motors
-        robot.motorFrontRight.setPower(power);//still need to test motor directions for desired movement
+        robot.motorFrontRight.setPower(-power);//still need to test motor directions for desired movement
         robot.motorFrontLeft.setPower(power);
-        robot.motorBackRight.setPower(power);
+        robot.motorBackRight.setPower(-power);
         robot.motorBackLeft.setPower(power);
     }
 
@@ -123,6 +146,7 @@ public class DansObjectDetection extends LinearOpMode {
     {
         DriveForward(power);
         Thread.sleep(time);
+
     }
 
     public void StopDriving()
@@ -138,9 +162,9 @@ public class DansObjectDetection extends LinearOpMode {
     public void StrafeLeft(double power, long time) throws InterruptedException
     {
         // write the values to the motors
-        robot.motorFrontRight.setPower(power);
+        robot.motorFrontRight.setPower(-power);
         robot.motorFrontLeft.setPower(-power);
-        robot.motorBackRight.setPower(-power);
+        robot.motorBackRight.setPower(power);
         robot.motorBackLeft.setPower(power);
         Thread.sleep(time);
     }
@@ -165,18 +189,33 @@ public class DansObjectDetection extends LinearOpMode {
         SpinRight(-power, time);
     }
 
+    public void RunLauncher(double power) throws InterruptedException
+    {
+        robot.backDiscLaunch.setPower(power);
+    }
 
-/*** Currently no Servo configured in Holonomic Hardware setup
+    public void OpenRingStop()
+    {
+        robot.stopServo.setPosition(.3);
+    }
 
- public void RaiseArm()
- {
- robot.armServo.setPosition(.8); //note: uses servo instead of motor.
- }
+    public void CloseRingStop()
+    {
+        robot.stopServo.setPosition(.155);
+    }
 
- public void LowerArm()
- {
- robot.armServo.setPosition(.2);
- }
- */
+/** Comma Claw functionality **/
+
+    public void closeClaw()
+    {
+        robot.commaClaw.setPosition(.8);
+        clawIsOpen = false;
+    }
+
+    public void openClaw()
+    {
+        robot.commaClaw.setPosition(.2);
+        clawIsOpen = true;
+    }
 
 }

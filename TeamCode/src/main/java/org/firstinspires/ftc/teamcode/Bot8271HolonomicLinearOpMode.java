@@ -56,16 +56,7 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
 
         while(opModeIsActive())
         {
-            float maxSpeed = 0.5f;
-
-            if(gamepad1.dpad_up)
-            {
-                maxSpeed = 1f;
-            }
-            else if(gamepad1.dpad_down)
-            {
-                maxSpeed = 0.5f;
-            }
+            float maxSpeed = 0.2f + gamepad1.right_trigger;
 
             // left stick: X controls Strafe & forward/backward
             float gamepad1LeftY = -gamepad1.right_stick_x;   // drives spin
@@ -101,11 +92,13 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
 
             if(gamepad2.a)
             {
+                // is this open or closed????????????????????????????????????
                 robot.stopServo.setPosition(.3);
             }
 
-            else if (gamepad2.b)
+            else
             {
+                // What about here ????????????????? Duhhhhhh
                 robot.stopServo.setPosition(.155);
             }
 
@@ -143,8 +136,7 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
                 robot.commaClaw.setPosition(.2);
             }
 
-            robot.armMotor.setPower(gamepad1.right_trigger);
-            robot.armMotor.setPower(-gamepad1.left_trigger);
+            robot.armMotor.setPower(gamepad2.right_stick_x);
 
             /*
              * Display Telemetry for debugging
