@@ -100,8 +100,8 @@ public class Bot8271HolonomicHardwareSetup {
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
         motorBackRight.setDirection(DcMotor.Direction.REVERSE);
 
-        armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        idle();
+        //armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //idle();
 
 
 

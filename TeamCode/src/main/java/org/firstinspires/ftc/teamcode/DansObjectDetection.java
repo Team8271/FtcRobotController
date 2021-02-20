@@ -103,26 +103,68 @@ public class DansObjectDetection extends LinearOpMode {
 
             if (ringStack.equals("B")) {
                 // Code for what to do for target zone B goes here - Single
-                DriveForwardTime(DRIVE_POWER, 500);
+                DriveForwardTime(DRIVE_POWER, 1000);
+                StopDrivingTime(1000);
+
+                SpinRight(DRIVE_POWER, 500);
+                StopDrivingTime(1000);
+
+                openClaw();
+                StopDrivingTime(1000);
+
+                SpinLeft(DRIVE_POWER, 500);
+                StopDrivingTime(1000);
+
+                StrafeLeft(DRIVE_POWER, 500);
+                StopDrivingTime(1000);
+
+                OpenRingStop();
+                RunLauncherTime(.5, 500);
+                StopDrivingTime(1000);
+                CloseRingStop();
 
             } else if (ringStack.equals("C")) {
                 // Code for what to do for target zone C goes here - Quad
-                DriveForwardTime(DRIVE_POWER, 500);
+                DriveForwardTime(DRIVE_POWER, 1000);
+                StopDrivingTime(1000);
+
+                SpinRight(DRIVE_POWER, 500);
+                StopDrivingTime(1000);
+
+                openClaw();
+                StopDrivingTime(1000);
+
+                SpinLeft(DRIVE_POWER, 500);
+                StopDrivingTime(1000);
+
+                StrafeLeft(DRIVE_POWER, 500);
+                StopDrivingTime(1000);
+
                 OpenRingStop();
+                RunLauncherTime(.5, 500);
+                StopDrivingTime(1000);
+                CloseRingStop();
 
             } else {
                 // Code for what to do for target zone A goes here - None
-                DriveForwardTime(DRIVE_POWER, 1000);
-                Thread.sleep(1000);
-                StrafeRight(DRIVE_POWER, 500);
-                Thread.sleep(500);
+                DriveForwardTime(DRIVE_POWER, 2500);
+                StopDrivingTime(1000);
+
+                RunArm(-DRIVE_POWER, 500);
+                StopDrivingTime(500);
+
                 openClaw();
-                Thread.sleep(2000);
+                StopDrivingTime(1000);
+
+                SpinLeft(DRIVE_POWER, 500);
+                StopDrivingTime(1000);
+
                 StrafeLeft(DRIVE_POWER, 500);
-                Thread.sleep(500);
-                RunLauncher(.5);
+                StopDrivingTime(1000);
+
                 OpenRingStop();
-                Thread.sleep(500);
+                RunLauncherTime(.5, 700);
+                StopDrivingTime(1000);
                 CloseRingStop();
             }
     }
@@ -130,8 +172,6 @@ public class DansObjectDetection extends LinearOpMode {
     /** Below: Basic Drive Methods used in Autonomous code...**/
     //set Drive Power variable
     double DRIVE_POWER = 0.5;
-
-    boolean clawIsOpen;
 
     public void DriveForward(double power)
     {
@@ -146,7 +186,6 @@ public class DansObjectDetection extends LinearOpMode {
     {
         DriveForward(power);
         Thread.sleep(time);
-
     }
 
     public void StopDriving()
@@ -189,9 +228,12 @@ public class DansObjectDetection extends LinearOpMode {
         SpinRight(-power, time);
     }
 
-    public void RunLauncher(double power) throws InterruptedException
+    public void RunLauncherTime(double power, long time) throws InterruptedException
     {
-        robot.backDiscLaunch.setPower(power);
+        robot.intakeServo.setPosition(.7);
+        robot.intakeMotor.setPower(1);
+        robot.frontDiscLaunch.setPower(power);
+        Thread.sleep(time);
     }
 
     public void OpenRingStop()
@@ -204,18 +246,22 @@ public class DansObjectDetection extends LinearOpMode {
         robot.stopServo.setPosition(.155);
     }
 
+    public void RunArm(double power, long time) throws InterruptedException
+    {
+        robot.armMotor.setPower(power);
+        Thread.sleep(time);
+    }
+
 /** Comma Claw functionality **/
 
     public void closeClaw()
     {
         robot.commaClaw.setPosition(.8);
-        clawIsOpen = false;
     }
 
     public void openClaw()
     {
         robot.commaClaw.setPosition(.2);
-        clawIsOpen = true;
     }
 
 }
