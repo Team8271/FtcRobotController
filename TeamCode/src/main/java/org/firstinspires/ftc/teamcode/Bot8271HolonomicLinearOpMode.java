@@ -72,10 +72,10 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
             float BackLeft = -gamepad1RightX + gamepad1LeftX - gamepad1LeftY;
 
             // clip the right/left values so that the values never exceed +/- 1
-            FrontRight = Range.clip(FrontRight, -maxSpeed, maxSpeed);
-            FrontLeft = Range.clip(FrontLeft, -maxSpeed, maxSpeed);
-            BackLeft = Range.clip(BackLeft, -maxSpeed, maxSpeed);
-            BackRight = Range.clip(BackRight, -maxSpeed, maxSpeed);
+           FrontRight = Range.clip(FrontRight, -maxSpeed, maxSpeed);
+           FrontLeft = Range.clip(FrontLeft, -maxSpeed, maxSpeed);
+           BackLeft = Range.clip(BackLeft, -maxSpeed, maxSpeed);
+           BackRight = Range.clip(BackRight, -maxSpeed, maxSpeed);
 
             // write the clipped values from the formula to the motors
             robot.motorFrontRight.setPower(FrontRight);
@@ -147,7 +147,7 @@ public class Bot8271HolonomicLinearOpMode extends LinearOpMode
             telemetry.addData("f right pwr", "front right pwr: " + String.format("%.2f", FrontRight));
             telemetry.addData("b right pwr", "back right pwr: " + String.format("%.2f", BackRight));
             telemetry.addData("b left pwr", "back left pwr: " + String.format("%.2f", BackLeft));
-
+            telemetry.update();
         }
     }
 }
